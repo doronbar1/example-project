@@ -35,7 +35,6 @@ function generateDates() {
   const dates = ["Today", "Tomorrow"];
 
   for (let i = 2; i < 9; i++) {
-    // Starting from 2 since we already have today and tomorrow
     const nextDate = new Date(today);
     nextDate.setDate(today.getDate() + i);
     dates.push(formatDate(nextDate));
@@ -54,7 +53,7 @@ export default function Joyous() {
     let minutes = date.getMinutes();
     let ampm = hours >= 12 ? "pm" : "am";
     hours = hours % 12;
-    hours = hours ? hours : 12; // the hour '0' should be '12'
+    hours = hours ? hours : 12;
     minutes = minutes < 10 ? "0" + minutes : minutes;
     let time = hours + ":" + minutes;
     return { time, ampm };
@@ -77,7 +76,7 @@ export default function Joyous() {
             !user.availability.busy.some((busyTime) => {
               const busyStart = new Date(busyTime.start);
               const busyEnd = new Date(busyTime.end);
-              return start < busyEnd && endSlot > busyStart; // Overlap condition
+              return start < busyEnd && endSlot > busyStart;
             })
           ) {
             console.log("START", start);
