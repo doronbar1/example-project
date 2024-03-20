@@ -79,7 +79,6 @@ export default function Joyous() {
               return start < busyEnd && endSlot > busyStart;
             })
           ) {
-            console.log("START", start);
             // remove datetime in the past, or if time is already in available to one of the team members
             if (new Date(start) > now || pstSlots.includes(start)) {
               pstSlots.push(formatAMPM(start));
@@ -103,11 +102,12 @@ export default function Joyous() {
     const data = await res.json();
 
     const pstSlots = generateTimeSlots(data);
-    // console.dir(pstSlots, { depth: null });
     setAvailableTimes(pstSlots);
   };
+
   useEffect(() => {
     if (isMounted.current) {
+      // init load
       loadNextAppointmentTime(0);
     }
     return () => {
@@ -119,7 +119,6 @@ export default function Joyous() {
     const today = new Date();
     const dayToUse = new Date();
     const oneDayForward = new Date();
-    console.log(idx);
 
     dayToUse.setDate(today.getDate() + idx);
     oneDayForward.setDate(today.getDate() + idx + 1);
@@ -127,7 +126,7 @@ export default function Joyous() {
     const dateSelected = dayToUse.toISOString().substring(0, 10);
     const oneDayForwardSelected = oneDayForward.toISOString().substring(0, 10);
 
-    const dateFormat = loadBookings(dateSelected, oneDayForwardSelected);
+    loadBookings(dateSelected, oneDayForwardSelected);
   };
 
   return (
