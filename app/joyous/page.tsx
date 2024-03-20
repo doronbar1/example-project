@@ -80,8 +80,10 @@ export default function Joyous() {
             })
           ) {
             // remove datetime in the past, or if time is already in available to one of the team members
-            if (new Date(start) > now || pstSlots.includes(start)) {
-              pstSlots.push(formatAMPM(start));
+
+            const timeToUse = formatAMPM(start);
+            if (new Date(start) > now && !pstSlots.includes(timeToUse)) {
+              pstSlots.push(timeToUse);
             }
           }
           start = endSlot;
