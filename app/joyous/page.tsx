@@ -80,7 +80,8 @@ export default function Joyous() {
             })
           ) {
             console.log("START", start);
-            if (new Date(start) > now) {
+            // remove datetime in the past, or if time is already in available to one of the team members
+            if (new Date(start) > now || pstSlots.includes(start)) {
               pstSlots.push(formatAMPM(start));
             }
           }
