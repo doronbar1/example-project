@@ -54,6 +54,10 @@ export default function Joyous() {
           {errorRoomVal && <div className="text-red-600">Max value is 100</div>}
         </div>
         <div className="mt-2 font-bold">Enter intervals</div>
+        <div>
+          Recommended input for intervals is: [[0, 30],[4, 20],[5, 10],[15,
+          20],[5, 10]]
+        </div>
         <div className="flex flex-col">
           <input
             className="mt-1 w-36 border border-1 border-gray-400"
